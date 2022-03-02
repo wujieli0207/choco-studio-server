@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
@@ -12,6 +13,8 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   // 全局注册拦截器
   app.useGlobalInterceptors(new TransoformInterceptor());
+  // 全局注册管道
+  app.useGlobalPipes(new ValidationPipe());
   // 设置 swagger 文档
   const config = new DocumentBuilder()
     .setTitle('俏可工作室后端文档')

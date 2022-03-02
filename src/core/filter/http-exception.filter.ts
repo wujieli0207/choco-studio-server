@@ -4,13 +4,15 @@ import {
   ExceptionFilter,
   HttpException,
 } from '@nestjs/common';
+import { ResultEnum } from 'src/enums/httpEnum';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp(); // 获取请求上下文
     const response = ctx.getResponse(); // 获取请求上下文的 response 对象
-    const status = exception.getStatus(); // 获取异常状态码
+    // const status = exception.getStatus(); // 获取异常状态码
+    const status = 400;
 
     // 设置错误信息
     const message = exception.message
@@ -19,7 +21,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const errorResponse = {
       result: {},
       message: message,
-      code: -1,
+      code: ResultEnum.ERROR,
     };
 
     // 设置返回的状态码， 请求头，发送错误信息

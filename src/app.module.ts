@@ -6,6 +6,8 @@ import envConfig from '../config/env';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppointModule } from './modules/appoint/appoint.module';
 import { Appoint } from './modules/appoint/entities/appoint.entity';
+import { UserModule } from './modules/user/user.module';
+import { User } from './modules/user/entities/user.entity';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { Appoint } from './modules/appoint/entities/appoint.entity';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         type: 'mysql',
-        entities: [Appoint], // 数据表实体
+        entities: [Appoint, User], // 数据表实体
         host: configService.get('DB_HOST', 'localhost'), // 默认 localhost
         port: configService.get<number>('DB_PORT', 3306), // 默认 3306
         username: configService.get('DB_USER', 'root'),
@@ -29,6 +31,7 @@ import { Appoint } from './modules/appoint/entities/appoint.entity';
       }),
     }),
     AppointModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

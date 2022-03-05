@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "3.5.7",
   "createdTime": "2022-2-27 15:02:28",
-  "updatedTime": "2022-2-27 18:10:53",
+  "updatedTime": "2022-3-5 11:03:07",
   "profile": {
     "default": {
       "db": "2E0ADEC4-1D3C-4708-9966-ACC2014C44BC",
@@ -447,6 +447,22 @@
           "id": "9225BACB-2E5E-4D68-AC45-2E75B5C05479"
         },
         {
+          "defKey": "APPOINT_IMG",
+          "defName": "可预约内容图片",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "BD012D8F-D4A7-498B-BB87-F580F9486542",
+          "id": "2FDA7F14-F6F9-46DC-813B-7A150118D65E"
+        },
+        {
           "defKey": "APPOINT_AMT",
           "defName": "可预约内容价格",
           "comment": "",
@@ -584,7 +600,7 @@
     },
     {
       "id": "11CA060A-95F2-4958-A959-DEA9B10C9E90",
-      "defKey": "t_custom",
+      "defKey": "t_user",
       "defName": "用户数据表",
       "comment": "",
       "properties": {},
@@ -668,7 +684,7 @@
       ],
       "fields": [
         {
-          "defKey": "CUSTOM_ID",
+          "defKey": "USER_ID",
           "defName": "ID",
           "comment": "",
           "type": "",
@@ -680,11 +696,11 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "4BBA0A21-B769-4E69-8906-1FCF7FA6A9F4",
+          "domain": "BD93C4AE-3988-4409-B6F0-22909F25D945",
           "id": "41C225AC-2F51-4155-A4CA-DAD70B5D7C60"
         },
         {
-          "defKey": "CUSTOM_NAME",
+          "defKey": "USER_NAME",
           "defName": "用户名称",
           "comment": "",
           "type": "",
@@ -700,7 +716,7 @@
           "id": "474F7DB4-0478-4519-8B78-0BBA62C2CCAA"
         },
         {
-          "defKey": "CUSTOM_NICK_NAME",
+          "defKey": "USER_NICK_NAME",
           "defName": "用户昵称",
           "comment": "",
           "type": "VARCHAR",
@@ -716,7 +732,7 @@
           "id": "EBC779D7-A9EC-48E2-AB2C-415958A70A25"
         },
         {
-          "defKey": "CUSTOM_AVATAR",
+          "defKey": "USER_AVATAR",
           "defName": "用户头像",
           "comment": "",
           "type": "",
@@ -760,7 +776,7 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "4BBA0A21-B769-4E69-8906-1FCF7FA6A9F4",
+          "domain": "BD93C4AE-3988-4409-B6F0-22909F25D945",
           "id": "F8EC19FC-165D-4BE4-AF27-B95D8D9C0449"
         },
         {
@@ -949,7 +965,7 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "4BBA0A21-B769-4E69-8906-1FCF7FA6A9F4",
+          "domain": "BD93C4AE-3988-4409-B6F0-22909F25D945",
           "id": "C0DA7559-90FD-4D4A-9099-737FD39A3476"
         },
         {
@@ -965,7 +981,7 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "4BBA0A21-B769-4E69-8906-1FCF7FA6A9F4",
+          "domain": "BD93C4AE-3988-4409-B6F0-22909F25D945",
           "id": "E4DD8056-37D7-4986-8781-E9431778840C"
         },
         {
@@ -981,7 +997,7 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "4BBA0A21-B769-4E69-8906-1FCF7FA6A9F4",
+          "domain": "BD93C4AE-3988-4409-B6F0-22909F25D945",
           "id": "24B1EEBF-D9F0-470A-B852-E632B3E5F52B"
         },
         {
@@ -1031,6 +1047,22 @@
           "refDict": "",
           "domain": "",
           "id": "2B74731F-D9C0-4680-B8D4-DF2E6B3E2236"
+        },
+        {
+          "defKey": "APPOINT_REMARK",
+          "defName": "预约备注",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "4BBA0A21-B769-4E69-8906-1FCF7FA6A9F4",
+          "id": "ED566E9D-66E8-4DAC-AF86-DDF20AE679AF"
         },
         {
           "defKey": "RC_STATE",

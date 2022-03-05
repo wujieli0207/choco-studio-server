@@ -8,7 +8,7 @@ import { TransoformInterceptor } from './core/interceptor/transoform.interceptor
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // 全局路由前缀
-  app.setGlobalPrefix('api');
+  // app.setGlobalPrefix('api');
   // 全局错误过滤器
   app.useGlobalFilters(new HttpExceptionFilter());
   // 全局注册拦截器

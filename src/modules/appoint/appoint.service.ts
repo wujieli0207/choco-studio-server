@@ -33,15 +33,14 @@ export class AppointService {
       throw new HttpException('可预约内容已存在', HttpStatus.UNAUTHORIZED);
     }
 
-    console.log('createAppointDto: ', createAppointDto);
     return await this.appointRepository.save(createAppointDto);
   }
 
   async findAll(): Promise<AppointRo> {
     const qb = getRepository(Appoint)
-      .createQueryBuilder('t_appoint')
-      .where(`t_appoint.rc_state = ${rcStateEnum.Exist}`)
-      .orderBy('t_appoint.created_time', 'DESC');
+      .createQueryBuilder('t1')
+      .where(`t1.rc_state = '${rcStateEnum.Exist}'`)
+      .orderBy('t1.created_time', 'DESC');
 
     return {
       list: await qb.getMany(),
@@ -65,15 +64,15 @@ export class AppointService {
       );
     }
 
-    const undateAppoint = this.appointRepository.merge(
+    const updateAppoint = this.appointRepository.merge(
       existAppoint,
       updateAppointDto,
     );
 
-    return await this.appointRepository.save(undateAppoint);
+    return await this.appointRepository.save(updateAppoint);
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<Appoint> {
     const existAppoint = await this.appointRepository.findOne(id);
     if (!existAppoint) {
       throw new HttpException(

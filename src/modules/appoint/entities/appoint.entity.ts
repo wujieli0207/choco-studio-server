@@ -12,10 +12,13 @@ import {
 export class Appoint {
   @PrimaryGeneratedColumn('increment')
   @PrimaryColumn({ name: 'appoint_id', type: 'int' })
-  appointID: number;
+  appointId: number;
 
   @Column({ name: 'appoint_title', type: 'varchar', comment: '可预约内容标题' })
   appointTitle: string;
+
+  @Column({ name: 'appoint_img', type: 'varchar', comment: '可预约内容图片' })
+  appointImg: string;
 
   @Column({ name: 'appoint_desc', type: 'varchar', comment: '可预约内容描述' })
   appointDesc: string;

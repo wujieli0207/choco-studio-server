@@ -8,12 +8,13 @@ import {
   Delete,
   HttpException,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AppointService } from './appoint.service';
 import { CreateAppointDto } from './dto/create-appoint.dto';
 import { UpdateAppointDto } from './dto/update-appoint.dto';
 
 @Controller('appoint')
+@ApiTags('预约内容 Controller')
 export class AppointController {
   constructor(private readonly appointService: AppointService) {}
 

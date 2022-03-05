@@ -11,8 +11,12 @@ export class CreateAppointDto {
   @IsNotEmpty({ message: '可预约内容标题必填' })
   readonly appointDesc: string;
 
+  @ApiProperty({ description: '可预约内容图片' })
+  @IsNotEmpty({ message: '可预约内容图片必填' })
+  readonly appointImg: string;
+
   @ApiProperty({ description: '可预约内容金额' })
-  // @IsNumber()
+  @IsNumber()
   readonly appointAmt: number;
 
   @ApiProperty({ description: '每日的可预约开始时间' })
@@ -21,8 +25,8 @@ export class CreateAppointDto {
   @ApiProperty({ description: '每日的可预约结束时间' })
   readonly appointEndTime: Date;
 
-  @ApiProperty({ description: '是否有效' })
-  // @IsEnum(rcStateEnum)
+  @ApiProperty({ description: '是否有效', default: rcStateEnum.Exist })
+  @IsEnum(rcStateEnum)
   readonly rcState: string;
 
   @ApiProperty({ description: '创建人' })
@@ -35,5 +39,5 @@ export class CreateAppointDto {
   readonly updatedBy: string;
 
   @ApiProperty({ description: '更新时间' })
-  updatedTime: Date;
+  readonly updatedTime: Date;
 }

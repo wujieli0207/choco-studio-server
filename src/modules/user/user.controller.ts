@@ -29,7 +29,7 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get('//findOne/:id')
+  @Get('/findOne/:id')
   @ApiOperation({ summary: '查找一个用户信息' })
   findOne(@Param('id') id: string) {
     return this.userService.findOne(+id);

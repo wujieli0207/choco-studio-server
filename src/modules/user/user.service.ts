@@ -6,9 +6,10 @@ import { getRepository, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { UserInfoVo } from './vo/user-info.vo';
 
 export interface UserRo {
-  list: User[];
+  list: UserInfoVo[];
   count: number;
 }
 
@@ -41,7 +42,15 @@ export class UserService {
   async findAll(): Promise<UserRo> {
     const qb = getRepository(User)
       .createQueryBuilder('t1')
-      .where(`t1.rc_state = '${rcStateEnum.Exist}'`)
+      .select([
+        't1.userId',
+        't1.userName',
+        't1.userNickName',
+        't1.userAvatar',
+        't1.openId',
+        't1.mobile',
+      ])
+      .where(`t1.rcState = '${rcStateEnum.Exist}'`)
       .orderBy('t1.created_time', 'DESC');
 
     return {
@@ -50,8 +59,21 @@ export class UserService {
     };
   }
 
-  async findOne(id: number): Promise<User> {
-    return await this.userRepository.findOne(id);
+  async findOne(id: number): Promise<UserInfoVo> {
+    const qb = getRepository(User)
+      .createQueryBuilder('t1')
+      .select([
+        't1.userId',
+        't1.userName',
+        't1.userNickName',
+        't1.userAvatar',
+        't1.openId',
+        't1.mobile',
+      ])
+      .where(`t1.userId = '${id}'`)
+      .where(`t1.rcState = '${rcStateEnum.Exist}'`);
+
+    return await qb.getOneOrFail();
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {

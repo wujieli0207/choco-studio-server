@@ -1,13 +1,5 @@
 import { Common } from 'src/common/entity/common.entity';
-import { rcStateEnum } from 'src/enums/dataEnum';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryColumn,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('t_user')
 export class User extends Common {

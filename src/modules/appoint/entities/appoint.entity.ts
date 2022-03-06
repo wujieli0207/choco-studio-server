@@ -1,3 +1,4 @@
+import { Common } from 'src/common/entity/common.entity';
 import { rcStateEnum } from 'src/enums/dataEnum';
 import {
   Column,
@@ -9,7 +10,7 @@ import {
 } from 'typeorm';
 
 @Entity('t_appoint')
-export class Appoint {
+export class Appoint extends Common {
   @PrimaryGeneratedColumn('increment')
   @PrimaryColumn({ name: 'appoint_id', type: 'int' })
   appointId: number;
@@ -39,43 +40,4 @@ export class Appoint {
     comment: '每日的可预约结束时间',
   })
   appointEndTime: Date;
-
-  @Column({
-    name: 'rc_state',
-    type: 'varchar',
-    default: rcStateEnum.Exist,
-    comment: '是否有效',
-  })
-  rcState: string;
-
-  @Column({
-    name: 'created_by',
-    type: 'varchar',
-    default: 'admin',
-    comment: '创建人',
-  })
-  createdBy: string;
-
-  // ! TODO 自动更新创建时间、修改时间待修复
-  @CreateDateColumn({
-    name: 'created_time',
-    type: 'timestamp',
-    comment: '创建时间',
-  })
-  createdTime: Date;
-
-  @Column({
-    name: 'updated_by',
-    type: 'varchar',
-    default: 'admin',
-    comment: '更新人',
-  })
-  updatedBy: string;
-
-  @UpdateDateColumn({
-    name: 'updated_time',
-    type: 'timestamp',
-    comment: '创建时间',
-  })
-  updatedTime: Date;
 }

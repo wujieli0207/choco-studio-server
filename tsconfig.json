@@ -16,6 +16,12 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app": ["./"],
+      "@app/*": ["./*"]
+    }
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,7 +1,4 @@
-import path from 'path';
 import { argv } from 'yargs';
-
-// const packageJSON = require(path.resolve(ROOT_PATH, 'package.json'));
 
 export const APP = {
   port: 8081,

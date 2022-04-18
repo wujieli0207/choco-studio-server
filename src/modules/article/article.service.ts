@@ -19,11 +19,13 @@ export class ArticleService {
   }
 
   findOne(id: number): Promise<Article[]> {
-    return this.articleModel
+    const result = this.articleModel
       .find({
         id: { $in: id },
       })
       .exec();
+    console.log('result: ', result);
+    return result;
   }
 
   update(id: number) {

@@ -18,10 +18,10 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@app": ["./"],
-      "@app/*": ["./*"]
-    }
+      "/@/*": ["src/*"]
+    },
+    "esModuleInterop": true
   },
-  "include": ["src/**/*", "test/**/*"],
+  "include": ["src/**/*", "test/**/*", "types/**/*.d.ts", "types/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

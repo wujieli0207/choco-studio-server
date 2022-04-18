@@ -5,6 +5,8 @@ import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './core/filter/http-exception.filter';
 import { TransoformInterceptor } from './core/interceptor/transoform.interceptor';
 
+import { APP } from '/@/app.config';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // 全局路由前缀
@@ -24,7 +26,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document); // docs 为访问上下文
-
-  await app.listen(9080);
+  await app.listen(APP.port);
 }
 bootstrap();

@@ -1,4 +1,4 @@
-import { rcStateEnum } from 'src/enums/dataEnum';
+import { rcStateEnum } from '/@/constants/system.constant';
 import { Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 export abstract class Common {

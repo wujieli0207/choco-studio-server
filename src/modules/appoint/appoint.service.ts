@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { cloneDeep } from 'lodash';
-import { rcStateEnum } from 'src/enums/dataEnum';
+import { rcStateEnum } from '/@/constants/system.constant';
 import { getRepository, Repository } from 'typeorm';
 import { CreateAppointDto } from './dto/create-appoint.dto';
 import { UpdateAppointDto } from './dto/update-appoint.dto';

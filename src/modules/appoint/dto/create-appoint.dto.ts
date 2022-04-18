@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
-import { rcStateEnum } from 'src/enums/dataEnum';
+import { rcStateEnum } from '/@/constants/system.constant';
 
 export class CreateAppointDto {
   @ApiProperty({ description: '可预约内容标题' })

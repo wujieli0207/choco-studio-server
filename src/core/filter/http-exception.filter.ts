@@ -4,7 +4,7 @@ import {
   ExceptionFilter,
   HttpException,
 } from '@nestjs/common';
-import { ResultEnum } from 'src/enums/httpEnum';
+import { ResultEnum } from '/@/constants/httpEnumnum';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {

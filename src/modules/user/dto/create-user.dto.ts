@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty } from 'class-validator';
-import { rcStateEnum } from 'src/enums/dataEnum';
+import { rcStateEnum } from '/@/constants/system.constant';
 
 export class CreateUserDto {
   @ApiProperty({ description: '用户名称' })

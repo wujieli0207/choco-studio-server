@@ -1,4 +1,3 @@
-import { isDevEnv } from '/@/app.environment';
 import {
   ArgumentsHost,
   Catch,
@@ -6,13 +5,6 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { isString } from 'lodash';
-import {
-  ExceptionInfo,
-  HttpResponseError,
-  ResponseStatus,
-} from '/@/interfaces/response.interface';
-import { UNDEFINED } from '/@/constants/value.constant';
 
 /**
  * @class HttpExceptionFilter
@@ -21,34 +13,26 @@ import { UNDEFINED } from '/@/constants/value.constant';
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
-    const request = host.switchToHttp().getRequest();
     const response = host.switchToHttp().getResponse();
-    const exceptionStatus =
-      exception.getStatus() || HttpStatus.INTERNAL_SERVER_ERROR;
+    const exceptionStatus = exception.getStatus();
 
-    const errorResponse: ExceptionInfo =
-      exception.getResponse() as ExceptionInfo;
-    const errorMessage = isString(errorResponse)
-      ? errorResponse
-      : errorResponse.message;
-    const errorInfo = isString(errorResponse) ? null : errorMessage.error;
-
-    const data: HttpResponseError = {
-      status: ResponseStatus.Error,
-      message: errorMessage,
-      error:
-        errorInfo?.message ||
-        (isString(errorInfo) ? errorInfo : JSON.stringify(errorInfo)),
-      debug: isDevEnv ? errorInfo?.stack || exception.stack : UNDEFINED,
+    // 设置错误信息
+    const message = exception.message
+      ? exception.message
+      : `${
+          exceptionStatus >= HttpStatus.INTERNAL_SERVER_ERROR
+            ? 'Service Error'
+            : 'Client Error'
+        }`;
+    const errrorResponse = {
+      data: {},
+      message,
+      code: -1,
     };
 
-    // 处理 404 情况
-    if (exceptionStatus === HttpStatus.NOT_FOUND) {
-      data.error = data.error || 'Not found';
-      data.message =
-        data.message || `Invalid API: ${request.method} > ${request.url}`;
-    }
-
-    return response.status(errorInfo?.status || exceptionStatus).jsonp(data);
+    // 设置返回状态码，请求头，发送错误信息
+    response.status(exceptionStatus);
+    response.header('Content-Type', 'application/json; charset=utf-8');
+    response.send(errrorResponse);
   }
 }

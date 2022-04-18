@@ -2,7 +2,7 @@ import { IsIn } from 'class-validator';
 import { prop } from '@typegoose/typegoose';
 import { rcStateEnum } from '/@/constants/system.constant';
 
-export abstract class CommonModule {
+export abstract class Common {
   @IsIn(Object.values(rcStateEnum))
   @prop({
     enum: rcStateEnum,

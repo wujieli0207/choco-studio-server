@@ -5,7 +5,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { map, Observable } from 'rxjs';
-import { ResultEnum } from '/@/constants/httpEnumnum';
+import { ResultEnum } from '/@/constants/system.constant';
 
 @Injectable()
 export class TransoformInterceptor implements NestInterceptor {

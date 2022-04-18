@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { CreateArticleDto } from './dto/create-article.dto';
-import { UpdateArticleDto } from './dto/update-article.dto';
+import { Article } from './article.model';
+import { MongooseModel } from '/@/interfaces/mongoose.interface';
+import { InjectModel } from '/@/transformers/model.transformer';
 
 @Injectable()
 export class ArticleService {
-  constructor() {}
+  constructor(
+    @InjectModel(Article)
+    private readonly articleModel: MongooseModel<Article>,
+  ) {}
 
-  create(createArticleDto: CreateArticleDto) {
+  create() {
     return 'This action adds a new article';
   }
 
@@ -14,11 +18,15 @@ export class ArticleService {
     return `This action returns all article`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} article`;
+  findOne(id: number): Promise<Article[]> {
+    return this.articleModel
+      .find({
+        id: { $in: id },
+      })
+      .exec();
   }
 
-  update(id: number, updateArticleDto: UpdateArticleDto) {
+  update(id: number) {
     return `This action updates a #${id} article`;
   }
 

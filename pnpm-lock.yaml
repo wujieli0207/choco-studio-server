@@ -8,7 +8,7 @@ specifiers:
   '@nestjs/mapped-types': '*'
   '@nestjs/platform-express': ^8.0.0
   '@nestjs/schematics': ^8.0.0
-  '@nestjs/swagger': ^5.2.0
+  '@nestjs/swagger': ^5.2.1
   '@nestjs/testing': ^8.0.0
   '@nestjs/typeorm': ^8.0.3
   '@typegoose/auto-increment': ^1.3.0

@@ -7,7 +7,8 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
+import { Article } from './article.model';
 import { ArticleService } from './article.service';
 
 @Controller('article')
@@ -21,8 +22,7 @@ export class ArticleController {
   }
 
   @Get()
-  @ApiOperation({ summary: '查询所有文章' })
-  findAll() {
+  getArticles() {
     return this.articleService.findAll();
   }
 

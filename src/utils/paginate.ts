@@ -1,5 +1,12 @@
 import { merge } from 'lodash';
-import type { Model, FilterQuery, QueryOptions, Document } from 'mongoose';
+import type {
+  Model,
+  FilterQuery,
+  QueryOptions,
+  Document,
+  Schema,
+} from 'mongoose';
+import { SortTypeEnum } from '/@/constants/article.constant';
 
 export interface PaginateResult<T> {
   documents: T[];
@@ -15,7 +22,7 @@ export interface PaginateOptions {
   // 分页配置
   page?: number;
   perPage?: number;
-  dateSort?: 1 | -1; // 1 升序，-1 降序
+  dateSort?: SortTypeEnum; // 1 升序，-1 降序
   projection?: string | object | null;
   // mongoose queryOptions
   sort?: QueryOptions['sort'];
@@ -29,6 +36,10 @@ export interface PaginateModel<T extends Document> extends Model<T> {
     query?: PaginateQuery<T>,
     options?: PaginateOptions,
   ): Promise<PaginateResult<T>>;
+}
+
+export function mongoosePaginate(schema: Schema) {
+  schema.statics.paginate = paginate;
 }
 
 const DEFAULT_OPTIONS: Required<

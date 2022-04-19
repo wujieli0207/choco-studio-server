@@ -31,7 +31,7 @@ const renderLog = (
 ) => {
   return (message: string, ...args: any) => {
     return console[method](
-      chalk.greenBright('[NP]'),
+      chalk.greenBright('[ChocoStudio]'),
       renderTime(),
       levelLabel,
       renderModule(message),

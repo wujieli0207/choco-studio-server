@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import type { Model, FilterQuery, QueryOptions } from 'mongoose';
+import type { Model, FilterQuery, QueryOptions, Document } from 'mongoose';
 
 export interface PaginateResult<T> {
   documents: T[];
@@ -8,6 +8,8 @@ export interface PaginateResult<T> {
   perPage: number;
   totalPage: number;
 }
+
+export type PaginateQuery<T = any> = FilterQuery<T>;
 
 export interface PaginateOptions {
   // 分页配置
@@ -20,6 +22,13 @@ export interface PaginateOptions {
   lean?: QueryOptions['lean'];
   populate?: QueryOptions['populate'];
   $queryOptions?: QueryOptions;
+}
+
+export interface PaginateModel<T extends Document> extends Model<T> {
+  paginate(
+    query?: PaginateQuery<T>,
+    options?: PaginateOptions,
+  ): Promise<PaginateResult<T>>;
 }
 
 const DEFAULT_OPTIONS: Required<

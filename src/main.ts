@@ -1,11 +1,11 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from '/@/filter/error.filter';
 import { TransoformInterceptor } from '/@/interceptor/transoform.interceptor';
 
-import { APP } from '/@/app.config';
+import { APP, setupSwagger } from '/@/app.config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,15 +18,7 @@ async function bootstrap() {
   // 全局注册管道
   app.useGlobalPipes(new ValidationPipe());
 
-  // 设置 swagger 文档
-  const config = new DocumentBuilder()
-    .setTitle('俏可工作室后端文档')
-    .setDescription('俏可工作室后端文档,包括移动端接口和管理后台接口')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document); // docs 为访问上下文
+  setupSwagger(app);
 
   await app.listen(APP.port);
 }

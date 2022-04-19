@@ -4,7 +4,7 @@ export enum PublishStateEnum {
   UNDER = 2, // 未发布
 }
 
-export enum SortType {
+export enum SortTypeEnum {
   Asc = 1, // 升序
   Desc = -1, // 降序
 }

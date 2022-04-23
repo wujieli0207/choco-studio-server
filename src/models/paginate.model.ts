@@ -26,5 +26,5 @@ export class PaginateOptionDTO extends PaginateBaseOptionDTO {
   @IsNotEmpty()
   @IsOptional()
   @Transform(({ value }) => unknowToNumber(value))
-  sort? = SortTypeEnum;
+  sort?: SortTypeEnum;
 }

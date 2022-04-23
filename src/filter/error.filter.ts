@@ -5,6 +5,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import logger from '../utils/logger';
 
 /**
  * @class HttpExceptionFilter
@@ -14,7 +15,8 @@ import {
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
     const response = host.switchToHttp().getResponse();
-    const exceptionStatus = exception.getStatus();
+    // ! TODO exception.getStatus() is not a function
+    const exceptionStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 
     // 设置错误信息
     const message = exception.message
@@ -29,6 +31,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       message,
       code: -1,
     };
+    logger.error(errrorResponse.message);
 
     // 设置返回状态码，请求头，发送错误信息
     response.status(exceptionStatus);

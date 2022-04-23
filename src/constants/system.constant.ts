@@ -13,3 +13,8 @@ export enum ResultEnum {
   TIMEOUT = 401,
   TYPE = 'success',
 }
+
+export enum BooleanNumberEnum {
+  False = 0,
+  True = 1,
+}

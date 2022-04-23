@@ -1,7 +1,9 @@
+import { PaginateOptions } from './../../utils/paginate';
 import { Injectable } from '@nestjs/common';
 import { Article } from './article.model';
 import { MongooseModel } from '/@/interfaces/mongoose.interface';
 import { InjectModel } from '/@/transformers/model.transformer';
+import { PaginateQuery, PaginateResult } from '/@/utils/paginate';
 
 @Injectable()
 export class ArticleService {
@@ -10,22 +12,27 @@ export class ArticleService {
     private readonly articleModel: MongooseModel<Article>,
   ) {}
 
+  /**
+   * ! TODO 翻页异常暂未实现
+   * @desc 查询文章列表分页方法
+   */
+  paginater(
+    query: PaginateQuery<Article>,
+    options: PaginateOptions,
+  ): Promise<Article[]> {
+    return this.articleModel.find().exec();
+  }
+
   create() {
     return 'This action adds a new article';
   }
 
-  findAll() {
-    return `This action returns all article`;
+  findAll(): Promise<Article[]> {
+    return this.articleModel.find().exec();
   }
 
-  findOne(id: number): Promise<Article[]> {
-    const result = this.articleModel
-      .find({
-        id: { $in: id },
-      })
-      .exec();
-    console.log('result: ', result);
-    return result;
+  findOne(id: number) {
+    return `This action returns ${id} article`;
   }
 
   update(id: number) {
